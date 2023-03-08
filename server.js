@@ -28,9 +28,10 @@ app.use(cors());
 app.use(morgan("dev")); 
 app.use(express.json()); 
 
+
 const ingredientData = require('./ingredientData');
-app.use(recipeRouter);
 app.use(ingredientRouters)
+app.use(recipeRouter);
 
 // test route
 app.get('/', (req, res) => {

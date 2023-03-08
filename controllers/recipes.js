@@ -29,6 +29,15 @@ router.post('/recipes', async (req, res) => {
 });
 
 // show
+router.get('/recipes/:id', async (req, res) => {
+    try {
+        res.status(200).json(await Recipe.findById(req.params.id));
+    } catch (error) {
+        res.status(400).json({
+            message: 'something went wrong'
+        });
+    }
+});
 
 
 module.exports = router;

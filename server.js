@@ -5,6 +5,7 @@ const morgan = require('morgan')
 const mongoose = require('mongoose');
 const Ingredient = require('./models/Ingredient');
 const ingredientRouters = require('./controllers/ingredientRouters');
+const recipeRouter = require('./controllers/recipes');
 
 // initialize app
 const app = express();
@@ -27,9 +28,11 @@ app.use(cors());
 app.use(morgan("dev")); 
 app.use(express.json()); 
 
-const ingredientData = require('./ingredientData');
 
+const ingredientData = require('./ingredientData');
 app.use(ingredientRouters)
+app.use(recipeRouter);
+
 // test route
 app.get('/', (req, res) => {
     res.send('hello');

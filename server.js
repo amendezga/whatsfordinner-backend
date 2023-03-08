@@ -33,7 +33,6 @@ app.get('/', (req, res) => {
     res.send('hello');
 });
 
-const inredientData = require('./ingredientData');
 const ingredientData = require('./ingredientData');
  app.get("/refrigerator/seed", (req, res) => {
     Ingredient.deleteMany({}).then(function(){

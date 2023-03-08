@@ -12,6 +12,7 @@ router.get("/refrigerator/seed", (req, res) => {
     });
   });
 
+//Index routes
 router.get("/refrigerator", async (req, res) => {
     try {
       res.status(200).json(await Ingredient.find({}));
@@ -20,6 +21,27 @@ router.get("/refrigerator", async (req, res) => {
     }
   });
 
+  //Delete routes
+  router.delete('/refrigerator/:objId',async(req,res)=>{
+    try{
+    res.status(200).json(await Ingredient.findByIdAndDelete(req.params.objId))
+  } catch(error){
+    res.status(400).json({message:"something went wrong"})
+  }
+  });
+
+  //Updates routes
+  router.put('/refrigerator/:objId',async(req,res)=>{
+    try {
+      res.status(200).json(
+        await Ingredient.findByIdAndUpdate(req.params.objId, req.body, { new: true })
+      );
+    } catch (error) {
+      res.status(400).json({ message: "something went wrong" });
+    }
+  });
+
+  //Create routes
   router.post('/refrigerator', async (req, res) => {
     try {
       res.status(201).json(await Ingredient.create(req.body));
@@ -27,4 +49,5 @@ router.get("/refrigerator", async (req, res) => {
       res.status(400).json({ message: "something went wrong" });
     }
   });
+  
   module.exports = router

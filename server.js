@@ -28,15 +28,10 @@ app.use(cors());
 app.use(morgan("dev")); 
 app.use(express.json()); 
 
-<<<<<<< HEAD
 const ingredientData = require('./ingredientData');
-
-app.use(ingredientRouters)
-=======
-app.use('/refrigerator',ingredientRouters)
 app.use(recipeRouter);
+app.use(ingredientRouters)
 
->>>>>>> main
 // test route
 app.get('/', (req, res) => {
     res.send('hello');

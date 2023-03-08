@@ -1,7 +1,7 @@
 const express = require('express')
 const router =express.Router();
-const Ingredient = require('../models/Ingredient');
 const inredientData = require('../ingredientData')
+const Ingredient = require('../models/Ingredient');
 
 router.get("/refrigerator/seed", (req, res) => {
     Ingredient.deleteMany({}, (error, results) => {

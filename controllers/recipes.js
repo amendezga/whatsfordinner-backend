@@ -14,6 +14,15 @@ router.get('/recipes', async (req, res) => {
 });
 
 // delete
+router.delete('/recipes/:id', async (req, res) => {
+    try {
+        res.status(200).json(await Recipe.findByIdAndDelete(req.params.id));
+    } catch (error) {
+        res.status(400).json({
+            message: 'something went wrong'
+        });
+    }
+});
 
 // update
 

@@ -5,7 +5,9 @@ const Recipe = require('../models/recipe');
 // index
 router.get('/recipes', async (req, res) => {
     try {
-        res.status(200).json(await Recipe.find({}));
+        res.status(200).json(await Recipe.find({
+            addedBy: req.user.uid
+        }));
     } catch (error) {
         res.status(400).json({
             message: 'something went wrong'
@@ -16,7 +18,10 @@ router.get('/recipes', async (req, res) => {
 // delete
 router.delete('/recipes/:id', async (req, res) => {
     try {
-        res.status(200).json(await Recipe.findByIdAndDelete(req.params.id));
+        res.status(200).json(await Recipe.findOneAndDelete({
+            addedBy: req.user.uid,
+            _id: req.params.id
+        }));
     } catch (error) {
         res.status(400).json({
             message: 'something went wrong'
@@ -28,8 +33,13 @@ router.delete('/recipes/:id', async (req, res) => {
 router.put('/recipes/:id', async (req, res) => {
     try {
         res.status(200).json(
-            await Recipe.findByIdAndUpdate(req.params.id, req.body, { new: true })
-            );
+            await Recipe.findOneAndUpdate({
+                addedBy: req.user.uid,
+                _id: req.params.id
+            }, req.body, {
+                new: true
+            })
+        );
     } catch (error) {
         res.status(400).json({
             message: 'something went wrong'
@@ -40,6 +50,7 @@ router.put('/recipes/:id', async (req, res) => {
 // create
 router.post('/recipes', async (req, res) => {
     try {
+        req.user.addedBy = req.user.uid;
         res.status(201).json(await Recipe.create(req.body));
     } catch (error) {
         res.status(400).json({
@@ -51,7 +62,10 @@ router.post('/recipes', async (req, res) => {
 // show
 router.get('/recipes/:id', async (req, res) => {
     try {
-        res.status(200).json(await Recipe.findById(req.params.id));
+        res.status(200).json(await Recipe.findOne({
+            addedBy: req.user.uid,
+            _id: req.params.id
+        }));
     } catch (error) {
         res.status(400).json({
             message: 'something went wrong'

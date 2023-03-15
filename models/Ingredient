@@ -1,9 +1,15 @@
 const mongoose = require("mongoose");
-const IngredintSchema = new mongoose.Schema(
-  {
-    name: String,
+const IngredientSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
   },
-  { timestamps: true }
-);
+  addedBy: {
+    type: String, // firebase user ID
+    required: true,
+  }
+}, {
+  timestamps: true
+});
 
-module.exports = mongoose.model("Ingredient", IngredintSchema);
+module.exports = mongoose.model("Ingredient", IngredientSchema);

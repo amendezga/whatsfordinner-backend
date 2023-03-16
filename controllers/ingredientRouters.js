@@ -6,7 +6,7 @@ const Ingredient = require('../models/Ingredient');
 router.get("/refrigerator/seed", (req, res) => {
   Ingredient.deleteMany({}, (error, results) => {
     Ingredient.create(data, (error, ingredients) => {
-      // console.log(error, teachers);
+
       res.redirect("/refrigerator");
     });
   });

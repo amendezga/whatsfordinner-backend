@@ -50,7 +50,7 @@ router.put('/recipes/:id', async (req, res) => {
 // create
 router.post('/recipes', async (req, res) => {
     try {
-        req.user.addedBy = req.user.uid;
+        req.body.addedBy = req.user.uid;
         res.status(201).json(await Recipe.create(req.body));
     } catch (error) {
         res.status(400).json({

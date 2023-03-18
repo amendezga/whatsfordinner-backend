@@ -27,6 +27,11 @@ app.use(cors());
 app.use(morgan("dev")); 
 app.use(express.json()); 
 
+// app.use(cors({
+//   origin: 
+//   methods:["GET", "POST", "DELTE", "UPDATE", "PUT"]
+// }));
+
 
 // adding helmetJS 
 const helmet = require("helmet");

@@ -27,7 +27,7 @@ admin.initializeApp({
     "type": "service_account",
     "project_id": "what-s-for-dinner-41da2",
     "private_key_id": PRIVATE_KEY_ID,
-    "private_key": PRIVATE_KEY.replace(/\n/g, ''),
+    "private_key": PRIVATE_KEY.replace(/\\n/g, '\n'),
     "client_email": "firebase-adminsdk-rznfv@what-s-for-dinner-41da2.iam.gserviceaccount.com",
     "client_id": CLIENT_ID,
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",

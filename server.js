@@ -23,14 +23,15 @@ mongoose.connection
   .on("error", (error) => console.log(`MongoDB Error: ${error.message}`));
   
 // mount middleware
-app.use(cors()); 
+// app.use(cors()); 
 app.use(morgan("dev")); 
 app.use(express.json()); 
 
-// app.use(cors({
-//   origin: 
-//   methods:["GET", "POST", "DELTE", "UPDATE", "PUT"]
-// }));
+
+app.use(cors({
+  origin: "https://whatsfordinnerteam.netlify.app/" , 
+  methods:["GET", "POST", "DELTE", "UPDATE", "PUT"]
+}));
 
 
 // adding helmetJS 
